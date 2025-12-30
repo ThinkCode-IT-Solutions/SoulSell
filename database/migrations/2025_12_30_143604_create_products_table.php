@@ -13,6 +13,30 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            // generic data
+            $table->string("name");
+            $table->string("slug")->unique();
+            $table->string("brand");
+            $table->string("model");
+            $table->string("year");
+            $table->double("selling_price");
+            $table->double("old_selling_price")->nullable();
+            $table->string("category_id");
+            // laptop specifications
+            $table->integer("ram");
+            $table->string("display_type");
+            $table->string("display_resolution");
+            $table->string("display_size");
+            $table->boolean("touch_capable");
+            $table->integer("storage");
+            $table->string("color");
+            $table->string("build_material");
+            $table->double("weight");
+            $table->string("processor");
+            $table->string("battery_capacity");
+            $table->string("battery_timing");
+            $table->string("charger_power");
+            $table->string("charging_type");
             $table->timestamps();
         });
     }
