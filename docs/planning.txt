@@ -1,0 +1,24 @@
+SoulSell
+
+A simple website with these pages
+- landing page (where categories , products and collections are shown)
+- category detail page (banners on top , products beneath )
+- shop page (all products listed)
+- collection page (banner on top, product beneath)
+- product detail page (all details of a single product)
+- cart page (with products in cart details)
+- checkout page (with billing address, payments , product info , user information)
+- thank you (with nice animations)
+- user accounts dashboard
+- product tracking page
+
+Expected Models
+- category
+- product
+- product images
+- collection
+- collection_products
+- users
+- order
+- order_products
+
