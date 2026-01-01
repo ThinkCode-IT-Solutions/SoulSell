@@ -35,6 +35,7 @@ class ProductFactory extends Factory
             'build_material' => $this->faker->randomElement(['Aluminum', 'Plastic', 'Carbon Fiber', 'Magnesium Alloy']),
             'weight' => $this->faker->randomFloat(2, 1.0, 3.5),
             'processor' => $this->faker->randomElement(['Intel Core i5', 'Intel Core i7', 'AMD Ryzen 5', 'AMD Ryzen 7', 'Apple M1']),
+            'generation' => $this->faker->randomElement(['10th Gen', '11th Gen', '12th Gen', '13th Gen']),
             'battery_capacity' => $this->faker->numberBetween(40, 100) . 'Wh',
             'battery_timing' => $this->faker->numberBetween(4, 12) . ' hours',
             'charger_power' => $this->faker->randomElement(['45W', '65W', '90W', '120W']),

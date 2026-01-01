@@ -33,6 +33,7 @@ return new class extends Migration
             $table->string("build_material");
             $table->double("weight");
             $table->string("processor");
+            $table->string("generation");
             $table->string("battery_capacity");
             $table->string("battery_timing");
             $table->string("charger_power");
