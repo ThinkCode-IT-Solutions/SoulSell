@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("slug")->unique();
             $table->string("brand");
             $table->string("model");
+            $table->string("description");
             $table->string("year");
             $table->double("selling_price");
             $table->double("old_selling_price")->nullable();

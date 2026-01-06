@@ -20,6 +20,7 @@ class ProductFactory extends Factory
             'name' => $this->faker->words(3, true),
             'slug' => $this->faker->unique()->slug(),
             'brand' => $this->faker->company(),
+            'description' => $this->faker->paragraph(),
             'model' => $this->faker->bothify('??-####'),
             'year' => $this->faker->year(),
             'selling_price' => $this->faker->randomFloat(2, 500, 5000),

@@ -3,13 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SiteController;
 
-Route::get("/", function () {
-    return view(view: 'home');
-});
-
-Route::get("/shop", [App\Http\Controllers\ProductController::class, "index"])->name("shop");
-Route::get("/shop/{product:slug}", [App\Http\Controllers\ProductController::class, "show"])->name("product.show");
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -22,3 +17,4 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+require __DIR__.'/site.php';
