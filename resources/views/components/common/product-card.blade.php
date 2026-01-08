@@ -2,10 +2,16 @@
     <article class="group cursor-pointer hover-lift">
         <div class="relative aspect-[4/3] bg-light mb-4 overflow-hidden">
             <div class="w-full h-full flex items-center justify-center">
-                <svg class="w-24 h-24 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
-                        d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
+                @if ($product->images->count() < 1)
+                    <svg class="w-24 h-24 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                            d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                @else
+                    <img src="{{ $product->images->first()->image_url }}" alt=""
+                        class="absolute inset-0 w-full h-full object-cover object-center rounded-lg" loading="lazy"
+                        decoding="async" />
+                @endif
             </div>
         </div>
         <div class="space-y-2">

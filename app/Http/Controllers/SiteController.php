@@ -14,6 +14,8 @@ class SiteController extends Controller
 
     public function shopPage (){
         $products = Product::all();
+
+        // dd($products->first()->images);
         return view('site.shop', compact('products'));
     }
 
