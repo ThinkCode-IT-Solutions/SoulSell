@@ -38,6 +38,8 @@ class SiteController extends Controller
     public function userAccountPage (){
         return view("site.user-account");
     }
-
+    public function noLongerActivePage (){
+        return view("site.no-active");
+    }
 
 }

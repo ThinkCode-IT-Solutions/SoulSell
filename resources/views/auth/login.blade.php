@@ -5,6 +5,13 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
+        @if(Session::has("error"))
+        <div class="block mt-4">
+            <label for="remember_me" class="inline-flex items-center">
+                <span class=" text-lg text-red-600 bg-gray-100 rounded-lg p-4">{{ Session::get('error') }}</span>
+            </label>
+        </div>
+        @endif
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
@@ -31,6 +38,9 @@
                 <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
             </label>
         </div>
+
+
+
 
         <div class="flex items-center justify-end mt-4">
             @if (Route::has('password.request'))

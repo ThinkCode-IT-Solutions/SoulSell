@@ -30,7 +30,7 @@
 
                         <!-- Thumbnail Images -->
                         <div class="grid grid-cols-4 gap-4">
-                            @foreach ($product->images  as $item)
+                            @foreach ($product->images as $item)
                                 <div
                                     class="aspect-square bg-light border-2 {{ $loop->iteration === 0 ? 'border-primary' : 'border-transparent' }} cursor-pointer hover:border-primary transition-colors">
 
@@ -104,13 +104,16 @@
                                 <button class="px-4 py-3 hover:bg-light transition-colors">+</button>
                             </div>
                         </div>
-                        <button
-                            class="w-full bg-primary text-white py-4 text-sm font-medium hover:bg-secondary transition-colors">
-                            Add to Cart
-                        </button>
+                        <a href="{{ route('checkout') }}">
+                            <button
+                                class="w-full bg-primary text-white py-4 text-sm font-medium hover:bg-secondary transition-colors">
+                                Buy Now
+                            </button>
+                        </a>
+
                         <button
                             class="w-full border border-gray-200 py-4 text-sm font-medium hover:border-primary transition-colors">
-                            Add to Wishlist
+                            Add to Cart
                         </button>
                     </div>
 

@@ -39,6 +39,9 @@ return new class extends Migration
             $table->string("battery_timing");
             $table->string("charger_power");
             $table->string("charging_type");
+
+
+            $table->boolean("is_active")->default(true);
             $table->timestamps();
         });
     }
