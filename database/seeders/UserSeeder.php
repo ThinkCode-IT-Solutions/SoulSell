@@ -17,7 +17,13 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'name' => 'Shahzad Farooq',
             'email' => 'admin@soulsell.com',
+
+            'role' => 1,
             'password' => Hash::make('password'),
         ]);
+
+        User::factory(10)->create();
+
+
     }
 }
