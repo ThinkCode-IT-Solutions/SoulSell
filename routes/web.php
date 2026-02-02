@@ -11,6 +11,7 @@ Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(['auth', 'verified',AdminCheck::class])->name('dashboard');
 
+Route::get("/order/success", [SiteController::class, "orderSuccess"])->name("order.success");
 Route::get("/user/dashboard", function (){
     return view("user.dashboard");
 })->middleware(['auth', 'verified',ActiveCheck::class])->name('user.dashboard');

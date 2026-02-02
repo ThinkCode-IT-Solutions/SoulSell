@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class SiteController extends Controller
 {
@@ -40,6 +41,13 @@ class SiteController extends Controller
     }
     public function noLongerActivePage (){
         return view("site.no-active");
+    }
+
+    public function orderSuccess () {
+        Mail::to("shahzadfarooqdev@gmail.com")->send(new \App\Mail\NewOrderRecievedMail());
+
+
+        return "email sent";
     }
 
 }
