@@ -104,7 +104,7 @@
                                 <button class="px-4 py-3 hover:bg-light transition-colors">+</button>
                             </div>
                         </div>
-                        <a href="{{ route('checkout') }}">
+                        <a href="{{ route('checkout', $product->slug) }}">
                             <button
                                 class="w-full bg-primary text-white py-4 text-sm font-medium hover:bg-secondary transition-colors">
                                 Buy Now
