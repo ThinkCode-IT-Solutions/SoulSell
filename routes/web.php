@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\UserShoppingController;
 use App\Http\Middleware\ActiveCheck;
 use App\Http\Middleware\AdminCheck;
 
@@ -12,9 +13,7 @@ Route::get('/admin/dashboard', function () {
 })->middleware(['auth', 'verified',AdminCheck::class])->name('dashboard');
 
 Route::get("/order/success", [SiteController::class, "orderSuccess"])->name("order.success");
-Route::get("/user/dashboard", function (){
-    return view("user.dashboard");
-})->middleware(['auth', 'verified',ActiveCheck::class])->name('user.dashboard');
+Route::get("/user/dashboard", [UserShoppingController::class, "dashboard"])->middleware(['auth', 'verified',ActiveCheck::class])->name('user.dashboard');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

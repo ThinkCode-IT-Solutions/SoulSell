@@ -41,7 +41,7 @@ class ProductFactory extends Factory
             'battery_timing' => $this->faker->numberBetween(4, 12) . ' hours',
             'charger_power' => $this->faker->randomElement(['45W', '65W', '90W', '120W']),
             'charging_type' => $this->faker->randomElement(['USB-C', 'Barrel Jack', 'MagSafe']),
-            'is_active' => $this->faker->boolean(50), // 50% chance of being active
+            'is_active' => $this->faker->boolean(100), // 100% chance of being active
         ];
     }
 }

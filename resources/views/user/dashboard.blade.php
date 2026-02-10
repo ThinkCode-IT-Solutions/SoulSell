@@ -108,37 +108,33 @@
                         </div>
 
                         <div class="space-y-4">
-                            @forelse($recentOrders ?? [] as $order)
+                            @forelse($orders as $order)
                             <div class="border border-gray-200 hover:border-accent transition-colors">
                                 <div class="p-6">
                                     <div class="flex justify-between items-start mb-4">
                                         <div>
-                                            <p class="font-semibold mb-1">Order #{{ $order->order_number ?? '12345678' }}</p>
-                                            <p class="text-sm text-muted">Placed on {{ $order->created_at ?? 'January 15, 2026' }}</p>
+                                            <p class="font-semibold mb-1">Order #{{ $order->order_id  }}</p>
+                                            <p class="text-sm text-muted">Placed on {{ $order->created_at->format("F d, Y")  }}</p>
                                         </div>
                                         <div class="text-right">
                                             <span class="inline-block px-3 py-1 bg-green-100 text-green-800 text-xs font-semibold uppercase tracking-wide">
-                                                {{ $order->status ?? 'Delivered' }}
+                                                {{ $order->order_status  }}
                                             </span>
-                                            <p class="text-lg font-bold mt-2">${{ $order->total ?? '2,857.80' }}</p>
+                                            <p class="text-lg font-bold mt-2">${{ $order->total_price  }}</p>
                                         </div>
                                     </div>
 
                                     <div class="border-t border-gray-200 pt-4 mt-4">
                                         <div class="flex items-center gap-4">
                                             <div class="w-20 h-20 bg-light border border-gray-200 flex items-center justify-center flex-shrink-0">
-                                                <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
-                                                </svg>
+                                                <img src="{{ $order->product->images->first()->image_url }}" alt="" class="w-100 h-100">
                                             </div>
                                             <div class="flex-1">
-                                                <p class="font-medium mb-1">{{ $order->product_name ?? 'Dell XPS 15 9520' }}</p>
-                                                <p class="text-sm text-muted">{{ $order->items_count ?? '2' }} item(s)</p>
+                                                <p class="font-medium mb-1">{{ $order->product->name }}</p>
+                                                <p class="text-sm text-muted">1 item</p>
                                             </div>
                                             <div class="flex gap-2">
-                                                <button class="px-4 py-2 border border-gray-300 text-sm font-medium hover:bg-gray-50 transition-colors">
-                                                    Track Order
-                                                </button>
+
                                                 <button class="px-4 py-2 bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors">
                                                     View Details
                                                 </button>
@@ -192,9 +188,7 @@
                             @endforelse
                         </div>
 
-                        <div class="text-center mt-6 pt-6 border-t border-gray-200">
-                            <a href="#" class="text-accent hover:underline font-medium">Load More Orders</a>
-                        </div>
+    
                     </div>
 
                     <!-- Profile Information Section -->
