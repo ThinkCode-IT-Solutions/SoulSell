@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
@@ -8,9 +9,12 @@ use App\Http\Controllers\UserShoppingController;
 use App\Http\Middleware\ActiveCheck;
 use App\Http\Middleware\AdminCheck;
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth', 'verified',AdminCheck::class])->name('dashboard');
+Route::get('/admin/dashboard',[OrderController::class, 'dashboard'])->middleware(['auth', 'verified',AdminCheck::class])->name('dashboard');
+Route::get('/orders', [OrderController::class, 'index'])->middleware(['auth', 'verified',AdminCheck::class])->name('orders.index');
+Route::get('/orders/detail', [OrderController::class, 'show'])->middleware(['auth', 'verified',AdminCheck::class])->name('orders.show');
+
+
+
 
 Route::get("/order/success", [SiteController::class, "orderSuccess"])->name("order.success");
 Route::get("/user/dashboard", [UserShoppingController::class, "dashboard"])->middleware(['auth', 'verified',ActiveCheck::class])->name('user.dashboard');
