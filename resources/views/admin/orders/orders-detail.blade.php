@@ -7,13 +7,13 @@
                     <div class="flex items-center space-x-4 mb-2">
                         <a href="{{ route('orders.index') }}" class="text-blue-600 hover:text-blue-900 text-sm">← Orders</a>
                     </div>
-                    <h1 class="text-3xl font-bold text-gray-900">Order #ORD-001234</h1>
-                    <p class="text-gray-600 mt-2">Placed on January 15, 2026</p>
+                    <h1 class="text-3xl font-bold text-gray-900">Order #{{ $order->id }}</h1>
+                    <p class="text-gray-600 mt-2">Placed on {{ $order->created_at->format('F d, Y \a\t g:i A') }}</p>
                 </div>
                 <div class="flex space-x-3">
                     <button class="inline-flex items-center px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4">
                         </svg>
                         Download
                     </button>
@@ -64,12 +64,12 @@
                             </div>
                             <div class="pt-1">
                                 <h4 class="font-semibold text-gray-900">Order Placed</h4>
-                                <p class="text-sm text-gray-600"></p>
+                                <p class="text-sm text-gray-600">{{ $order->created_at->format('F d, Y \a\t g:i A') }}</p>
                             </div>
                         </div>
 
                         <!-- Step 2 -->
-                        <div class="flex">
+                        {{-- <div class="flex">
                             <div class="flex flex-col items-center mr-4">
                                 <div class="flex items-center justify-center h-8 w-8 rounded-full bg-green-100 border-2 border-green-500">
                                     <svg class="h-5 w-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
@@ -113,7 +113,7 @@
                                 <h4 class="font-semibold text-gray-900">Delivered</h4>
                                 <p class="text-sm text-gray-600">January 19, 2026 at 5:30 PM</p>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
@@ -132,13 +132,13 @@
                                 </svg>
                             </div>
                             <div class="flex-1">
-                                <h3 class="text-sm font-semibold text-gray-900">MacBook Pro 16-inch</h3>
-                                <p class="text-xs text-gray-500 mt-1">Apple M2 Pro, 16GB RAM, 512GB SSD</p>
-                                <p class="text-xs text-gray-500 mt-2">SKU: APPLE-MBP-16-M2</p>
+                                <h3 class="text-sm font-semibold text-gray-900">{{ $order->product->name }}</h3>
+                                <p class="text-xs text-gray-500 mt-1">{{ $order->product->description }}</p>
+                                <p class="text-xs text-gray-500 mt-2">SKU: {{ $order->product->sku }}</p>
                             </div>
                             <div class="text-right">
                                 <p class="text-sm font-semibold text-gray-900">Qty: <span class="font-normal">1</span></p>
-                                <p class="text-sm font-semibold text-gray-900 mt-2">$2,499.00</p>
+                                <p class="text-sm font-semibold text-gray-900 mt-2">${{ number_format($order->product->selling_price, 2) }}</p>
                             </div>
                         </div>
                     </div>
@@ -148,7 +148,7 @@
                         <div class="space-y-3">
                             <div class="flex justify-between text-sm">
                                 <span class="text-gray-600">Subtotal</span>
-                                <span class="text-gray-900 font-medium">$2,499.00</span>
+                                <span class="text-gray-900 font-medium">${{ number_format($order->product->selling_price, 2) }}</span>
                             </div>
                             <div class="flex justify-between text-sm">
                                 <span class="text-gray-600">Shipping</span>
@@ -156,11 +156,11 @@
                             </div>
                             <div class="flex justify-between text-sm">
                                 <span class="text-gray-600">Tax</span>
-                                <span class="text-gray-900 font-medium">$199.92</span>
+                                <span class="text-gray-900 font-medium">${{ number_format($order->product->selling_price * 0.08, 2) }}</span>
                             </div>
                             <div class="border-t border-gray-200 pt-3 flex justify-between">
                                 <span class="text-gray-900 font-semibold">Total</span>
-                                <span class="text-gray-900 font-semibold text-lg">$2,698.92</span>
+                                <span class="text-gray-900 font-semibold text-lg">${{ number_format($order->product->selling_price * 1.08, 2) }}</span>
                             </div>
                         </div>
                     </div>
@@ -182,13 +182,13 @@
                         <div>
                             <p class="text-xs text-gray-500 uppercase tracking-wide">Email</p>
                             <p class="text-sm font-medium text-gray-900">
-                                <a href="mailto:john@example.com" class="text-blue-600 hover:text-blue-900">john@example.com</a>
+                                <a href="mailto:{{ $order->shipping_email }}" class="text-blue-600 hover:text-blue-900">{{ $order->shipping_email }}</a>
                             </p>
                         </div>
                         <div>
                             <p class="text-xs text-gray-500 uppercase tracking-wide">Phone</p>
                             <p class="text-sm font-medium text-gray-900">
-                                <a href="tel:+1234567890" class="text-blue-600 hover:text-blue-900">+1 (234) 567-890</a>
+                                <a href="tel:+1234567890" class="text-blue-600 hover:text-blue-900">{{ $order->shipping_phone }}</a>
                             </p>
                         </div>
                         <div>
@@ -209,12 +209,12 @@
                 <div class="bg-white rounded-lg shadow p-6">
                     <h3 class="text-lg font-semibold text-gray-900 mb-4">Shipping Address</h3>
                     <div class="space-y-2 text-sm text-gray-600">
-                        <p>John Doe</p>
-                        <p>123 Main Street</p>
-                        <p>Apartment 4B</p>
-                        <p>New York, NY 10001</p>
-                        <p>United States</p>
-                        <p>+1 (234) 567-890</p>
+                        <p>{{ $order->shipping_name }}</p>
+                        <p>{{ $order->shipping_address }}</p>
+                        <p>{{ $order->shipping_address2 }}</p>
+                        <p>{{ $order->shipping_city }}, {{ $order->shipping_state }} {{ $order->shipping_zip }}</p>
+                        <p>{{ $order->shipping_country }}</p>
+                        <p>{{ $order->shipping_phone }}</p>
                     </div>
                     <button class="w-full mt-4 px-4 py-2 text-sm text-blue-600 hover:text-blue-900 font-medium border border-blue-300 rounded-lg hover:bg-blue-50 transition-colors">
                         Edit Address
@@ -225,11 +225,11 @@
                 <div class="bg-white rounded-lg shadow p-6">
                     <h3 class="text-lg font-semibold text-gray-900 mb-4">Billing Address</h3>
                     <div class="space-y-2 text-sm text-gray-600">
-                        <p>John Doe</p>
-                        <p>123 Main Street</p>
-                        <p>Apartment 4B</p>
-                        <p>New York, NY 10001</p>
-                        <p>United States</p>
+                        <p>{{ $order->shipping_name }}</p>
+                        <p>{{ $order->shipping_address }}</p>
+                        <p>{{ $order->billing_address2 }}</p>
+                        <p>{{ $order->shipping_city }}, {{ $order->shipping_state }} {{ $order->shipping_zip }}</p>
+                        <p>{{ $order->shipping_country }}</p>
                     </div>
                     <button class="w-full mt-4 px-4 py-2 text-sm text-blue-600 hover:text-blue-900 font-medium border border-blue-300 rounded-lg hover:bg-blue-50 transition-colors">
                         Edit Address

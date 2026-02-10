@@ -11,7 +11,7 @@ use App\Http\Middleware\AdminCheck;
 
 Route::get('/admin/dashboard',[OrderController::class, 'dashboard'])->middleware(['auth', 'verified',AdminCheck::class])->name('dashboard');
 Route::get('/orders', [OrderController::class, 'index'])->middleware(['auth', 'verified',AdminCheck::class])->name('orders.index');
-Route::get('/orders/detail', [OrderController::class, 'show'])->middleware(['auth', 'verified',AdminCheck::class])->name('orders.show');
+Route::get('/orders/{order}/detail', [OrderController::class, 'show'])->middleware(['auth', 'verified',AdminCheck::class])->name('orders.show');
 
 
 
