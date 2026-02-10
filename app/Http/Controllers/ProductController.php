@@ -13,8 +13,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        return view('shop', compact('products'));
+        $products = Product::paginate(10);
+        return view('admin.products.index', compact('products'));
     }
 
     /**
@@ -22,7 +22,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+
+        return view('admin.products.create');
     }
 
     /**
@@ -30,15 +31,15 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //
-    }
+
 
     /**
      * Display the specified resource.
      */
+    }
     public function show(Product $product)
     {
-        return view("product", compact("product"));
+        return view("admin.products.show", compact("product"));
     }
 
     /**
@@ -46,7 +47,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+
     }
 
     /**
@@ -60,8 +61,9 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function delete(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
     }
 }
